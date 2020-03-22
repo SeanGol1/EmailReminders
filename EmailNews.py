@@ -1,6 +1,8 @@
 from newsapi import NewsApiClient
 import json
 from datetime import date, timedelta
+import smtplib, ssl
+
 
 newsapi = NewsApiClient(api_key='94454bdacf3247a2957f23c8de7f597f')
 
@@ -59,7 +61,7 @@ for items in irish_headlines:
 
 
 ########  Tech Headlines
-emailstr += "########################################################################################\r\n\r\n"
+emailstr += "======================================================================================\r\n\r\n"
 emailstr += "Tech Headlines - "
 emailstr += str(tech_headlines['totalResults'])
 emailstr += " Stories\r\n\r\n"
@@ -78,12 +80,33 @@ for items in tech_headlines:
 
 
 
-print(emailstr)
+#print(emailstr)
 #print(json.dumps(irish_headlines, indent = 4))
 
+sender_email = "SeanGNewsTest@gmail.com"
+receiver_email = "seangol1@hotmail.com"
+message = """\
+Subject: News Headlines 
 
+This is a Test
+"""
 
+#message += emailstr
+#port = 465  # For SSL
+port = 587  # For starttls
 
+# Create a secure SSL context
+context = ssl.create_default_context()
 
+#with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
+#    server.login("SeanGNewsTest@gmail.com", 'B@llym0te')
+#    server.sendmail(sender_email, receiver_email, message)
 
+context = ssl.create_default_context()
+with smtplib.SMTP("smtp.gmail.com", port) as server:
+    server.ehlo()  # Can be omitted
+    server.starttls(context=context)
+    server.ehlo()  # Can be omitted
+    server.login(sender_email, "B@llym0te")
+    server.sendmail(sender_email, receiver_email, message)
 
