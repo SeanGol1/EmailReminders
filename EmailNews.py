@@ -85,8 +85,8 @@ for items in tech_headlines:
 #print(emailstr)
 #print(json.dumps(irish_headlines, indent = 4))
 
-sender_email = "SeanGNewsTest@gmail.com"
-receiver_email = "seangol1@hotmail.com"
+sender_email = ""
+receiver_email = ""
 message = """\
 Subject: News Headlines 
 
@@ -102,6 +102,6 @@ with smtplib.SMTP("smtp.gmail.com", port) as server:
      server.ehlo()  # Can be omitted
      server.starttls(context=context)
      server.ehlo()  # Can be omitted
-     server.login(sender_email, "B@llym0te")
+     server.login(sender_email, "") #Input PW
      server.sendmail(sender_email, receiver_email, message.encode("utf-8"))
 
