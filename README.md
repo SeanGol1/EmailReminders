@@ -22,12 +22,12 @@ https://newsapi.org/register
 
 # Technologies 
 
-App written in Python 
-Config file in imi format
-ConfigParser library used.
-NewsAPIClient API and library used
-ssl to open email port
-smtplib for email sending
+*App written in Python 
+*Config file in imi format
+*ConfigParser library used.
+*NewsAPIClient API and library used
+*ssl to open email port
+*smtplib for email sending
 
 
 
